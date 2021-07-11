@@ -1,38 +1,110 @@
-.App {
-  text-align: center;
+/* APP VARIABLES */
+:root {
+  font-size: 14px;
+
+  --background-color: #FFFFFF;
+  
+  --primary-color: #003060;
+  --primary-color-rgb: 0,48,96;
+  --primary-color-contrast: #ffffff;
+  --primary-color-contrast-rgb: 255,255,255;
+  --primary-color-shade: #002a54;
+
+  --secondary-color: #00E0D1;
+  --secondary-color-rgb: 0,224,209;
+  --secondary-color-contrast: #ffffff;
+  --secondary-color-contrast-rgb: 255,255,255;
+  --secondary-color-shade: #00B8AB;
+
+  --danger-color: #D81E5B;
+  --danger-color-rgb: 216,30,91;
+  --danger-color-contrast: #ffffff;
+  --danger-color-contrast-rgb: 255,255,255;
+  --danger-color-shade: #B4184C;
+
+  --light-color: #F9F9F9;
+  --light-color-rgb: 249,249,249;
+  --light-color-contrast: #010101;
+  --light-color-contrast-rgb: 1,1,1;
+  --light-color-shade: #F2F2F2;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* UTILITY CLASSES */
+/* Layout */
+.flex :global {
+  display: flex !important;
+  flex-wrap: wrap !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.flex1 :global {
+  flex: 1 !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.flexCenter {
+  justify-content: center !important;
+  align-items: center !important;
 }
 
-.App-link {
-  color: #61dafb;
+.flexCenterHor {
+  justify-content: center !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.flexCenterVer {
+  align-items: center !important;
+}
+
+.flexBetweenHor {
+  justify-content: space-between !important;
+}
+
+/* Font */
+.fontSize1 :global {
+  font-size: 1rem !important;
+}
+
+.fontSize2 :global {
+  font-size: 1.25rem !important;
+}
+
+.fontSize3 :global {
+  font-size: 1.5rem !important;
+}
+
+.fontSize4 :global {
+  font-size: 1.75rem !important;
+}
+
+.fontSize5 :global {
+  font-size: 2rem !important;
+}
+
+/* APP */
+.app {
+  height: 100vh;
+  font-size: 1.15rem;
+}
+
+.appContent {
+  composes: flex1;
+  height: 100vh;
+  max-height: 100vh;
+  position: relative;
+  padding: 80px 0px 0px;
+  background-color: var(--light-color);
+  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.08);
+}
+
+.nav {
+  min-width: 100px;
+  padding: 10px 15px;
+  background-color: var(--background-color);
+}
+
+.navContent {
+  height: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  background-color: var(--primary-color);
+  background-image: linear-gradient(var(--primary-color-shade), var(--primary-color));
 }

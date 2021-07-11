@@ -1,9 +1,16 @@
-import './App.module.css';
+import styles from './App.module.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      
+    <div className={`${styles.app} ${styles.flex}`}>
+      <nav className={styles.nav}>
+        <div className={styles.navContent}>
+            skfjk
+        </div>
+      </nav>
+      <main className={styles.appContent}>
+        
+      </main>
     </div>
   );
 }
