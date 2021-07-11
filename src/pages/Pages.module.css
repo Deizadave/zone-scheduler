@@ -1,0 +1,26 @@
+.page {
+    padding: 20px;
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-color: var(--primary-color-shade) rgba(var(--primary-color-rgb), 0.3);
+    scrollbar-width: thin;
+  }
+
+  .page::-webkit-scrollbar {
+    width: 6px;
+  }
+  .page::-webkit-scrollbar-track {
+    background: rgba(var(--primary-color-rgb), 0.2);
+  }
+  .page::-webkit-scrollbar-button {
+    background-color: var(--primary-color-shade);
+    height: 10px;
+  }
+  .page::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-color-rgb), 0.9);
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+  }
+  .page::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-color-rgb), 0.9);
+  }
