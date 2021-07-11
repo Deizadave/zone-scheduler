@@ -1,0 +1,127 @@
+.button {
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    font-size: inherit;
+}
+
+/* Outline button */
+.outline {
+    padding: 10px 20px;
+    border: 1px solid;
+}
+
+.outline.primary {
+    color: var(--primary-color-shade);
+    border-color: var(--primary-color);
+}
+
+.outline.secondary {
+    color: var(--secondary-color-shade);
+    border-color: var(--secondary-color);
+}
+
+.outline.danger {
+    color: var(--danger-color-shade);
+    border-color: var(--danger-color);
+}
+
+.outline:hover {
+    background-color: var(--light-color);
+}
+
+/* Fill button */
+.fill {
+    padding: 10px 20px;
+    border: 1px solid;
+}
+
+.fill.primary {
+    color: var(--primary-color-contrast);
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+}
+
+.fill.primary:hover {
+    border-color: var(--primary-color-shade);
+    background-color: var(--primary-color-shade);
+}
+
+.fill.secondary {
+    color: var(--secondary-color-contrast);
+    border-color: var(--secondary-color);
+    background-color: var(--secondary-color);
+}
+
+.fill.secondary:hover {
+    border-color: var(--secondary-color-shade);
+    background-color: var(--secondary-color-shade);
+}
+
+.fill.danger {
+    color: var(--danger-color-contrast);
+    border-color: var(--danger-color);
+    background-color: var(--danger-color);
+}
+
+.fill.danger:hover {
+    border-color: var(--danger-color-shade);
+    background-color: var(--danger-color-shade);
+}
+
+/* Toggle Button */
+.toggle {
+    padding: 8px 10px;
+    border: 1px solid;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    min-width: 70px;
+    font-size: 1.2rem;
+}
+
+.toggleSlider {
+    position: absolute;
+    top: 5px;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    transition: all 0.3s ease-out;
+}
+
+.toggleSliderRight {
+    right: 10px;
+}
+
+.toggle.primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb), 0.05);
+}
+
+.toggle.primary .toggleSlider {
+    color: var(--primary-color-contrast);
+    background-color: var(--primary-color);
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.toggle.secondary {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    background-color: rgba(var(--secondary-color-rgb), 0.05);
+}
+
+.toggle.secondary .toggleSlider {
+    color: var(--secondary-color-contrast);
+    background-color: var(--secondary-color);
+    box-shadow: 0px 0px 3px rgba(va0,0,0,0.3);
+}
+
+.toggle:hover {
+    background-color: var(--light-color);
+}
