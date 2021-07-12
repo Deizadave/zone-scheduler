@@ -6,16 +6,20 @@ interface Props {
   design?: "" | "fill" | "outline";
   color?: "primary" | "secondary" | "danger";
   label: string;
+  icon?: string;
   toggleLabel?: [string, string];
-  action?: () => {};
+  action?: () => any;
   link?: string;
+  disabled?: boolean;
 }
 
 function Button({
-  type, design = '', color = 'primary', label = '', toggleLabel = ['', ''], action, link
+  type, design = '', color = 'primary', label = '', icon, toggleLabel = ['', ''], action, link, disabled = false
 }: Props) {
   return (
-    <button className={`${localStyles.button} ${localStyles[type]} ${localStyles[design]} ${localStyles[color]}`}>
+    <button className={`${localStyles.button} ${localStyles[type]} ${localStyles[design]} ${localStyles[color]}`}
+      onClick={action ? action : undefined} disabled={disabled}>
+        {icon ? <span className="material-icons-round">{icon}</span> : null}
         {type === "toggle" ?
           <>
             <span className={`

@@ -4,7 +4,11 @@ import localStyles from './Filter.module.css';
 import globalStyles from '../../../../App.module.css';
 import Input from "../../../../components/Input/Input";
 
-const Filter = () => {
+interface Props {
+    addSchedule: () => void;
+}
+
+const Filter = ({addSchedule}: Props) => {
     const [form, setForm] = useState<any>({
         fields: {
             zones: {
@@ -37,9 +41,7 @@ const Filter = () => {
         });
     }
 
-    const inputChangedHandler = (e: any, field: string) => {
-        console.log(e.target.value);
-        
+    const inputChangedHandler = (e: any, field: string) => {        
         setForm((prevForm: any) => ({
             ...prevForm,
             fields: {
@@ -55,15 +57,16 @@ const Filter = () => {
     return (
         <section className={`${localStyles.filter} ${globalStyles.flex} ${globalStyles.flexCenterVer} ${globalStyles.flexBetweenHor}`}>
             <div className={`${globalStyles.flex} ${globalStyles.flexCenterVer} ${globalStyles.flex1}`}>
-                {formFieldArray.map((field: any) => (
+                {formFieldArray.map((field: any, i) => (
                     <Input key={field.id} value={field.config.value}
+                        index={'filter'+i}
                         label={field.config.label} layout={field.config.layout}
                         elementType={field.config.elementType}
                         options={field.config.options?.length ? field.config.options : undefined}
                         inputChanged={(e) => inputChangedHandler(e, field.id)} />
                 ))}
             </div>
-            <Button type="button" design="fill" color="primary" label="Add schedule" />
+            <Button type="button" design="fill" color="primary" label="Add schedule" action={addSchedule} />
         </section>
     );
 }

@@ -1,13 +1,14 @@
-import React, {  useState } from 'react';
 import localStyles from './Input.module.css';
 import globalStyles from '../../App.module.css';
 
 interface Props {
     label: string;
-    elementType: "text" | "select" | "radio" | "time";
+    elementType: "text" | "select" | "multipleSelect" | "radio";
     value: any;
     layout: "inline" | "block";
     inputChanged: <T = unknown>(args?: T) => any;
+    index: string;
+    elementConfig?: string;
     invalid?: boolean;
     shouldValidate?: boolean;
     touched?: boolean;
@@ -27,17 +28,44 @@ const Input:React.FC<Props> = (props) => {
     switch (props.elementType) {
         case ('text'): inputElement = 
                 <input className={`${localStyles.input} ${inputError ? localStyles.inputError : ''}`}
-                value={props.value} onChange={props.inputChanged} />
+                id={props.index} value={props.value} {...props.elementConfig} onChange={props.inputChanged} />
             break;
-        case ('select'): inputElement = 
-                <select className={`${localStyles.input} ${inputError ? localStyles.inputError : ''}`}
-                    value={props.value} onChange={props.inputChanged}>
-                    {props.options?.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.text}
-                        </option>
-                    ))}
-                </select>;
+        case ('select'): inputElement = <>
+                    <select className={`${localStyles.input} ${inputError ? localStyles.inputError : ''}`}
+                        id={props.index} value={props.value} {...props.elementConfig} onChange={props.inputChanged}>
+                        <option disabled></option>
+                        {props.options?.map((option) => (
+                            <option value={option.value} key={option.value}>
+                                {option.text}
+                            </option>
+                        ))}
+                    </select>
+                </>;
+            break;
+        case ('multipleSelect'): inputElement = <>
+                    {props.value.length ?
+                        <div className={`${localStyles.selectedOptions} ${globalStyles.flex}`}>
+                            {props.value.map((val: string) => {
+                                const Text = props.options?.find(o => o.value === val)?.text;
+                                return (
+                                    <button key={val} onClick={() => props.inputChanged({target: {value: val}})}
+                                        className={localStyles.selectedOption}>
+                                        {Text}&nbsp;&nbsp;X
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    : null}
+                    <select className={`${localStyles.input} ${inputError ? localStyles.inputError : ''}`}
+                        id={props.index} defaultValue={`Select ${props.label}`} onChange={props.inputChanged}>
+                        <option value={`Select ${props.label}`} disabled>{`Select ${props.label}`}</option>
+                        {props.options?.filter(option => !props.value.includes(option.value)).map((option) => (
+                            <option value={option.value} key={option.value}>
+                                {option.text}
+                            </option>
+                        ))}
+                    </select>
+                </>;
             break;
         case ('radio'): inputElement = 
                 <div className={`${globalStyles.inlineFlex} ${globalStyles.flexCenterVer}`}>
@@ -59,8 +87,11 @@ const Input:React.FC<Props> = (props) => {
     }
     
     return (
-        <div className={`${localStyles.inputBox} ${globalStyles.flexCenterVer} ${props.layout === "block" ? globalStyles.flex : `${globalStyles.flex} ${localStyles.inputBoxInline}`}`}>
-            <label className={localStyles.label}>{props.label}</label>
+        <div className={`
+                ${localStyles.inputBox}
+                ${props.layout === "block" ? `${globalStyles.flex} ${globalStyles.flexColumn}` : `${globalStyles.flex} ${globalStyles.flexCenterVer} ${localStyles.inputBoxInline}`}`
+            }>
+            <label className={localStyles.label} htmlFor={props.index}>{props.label}</label>
             {inputElement}
             <span className={'input-box__message' + (inputError ? ' input-box__message--error' : '')}>
                 {props.message ? props.message : null}

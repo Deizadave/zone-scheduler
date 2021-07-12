@@ -48,6 +48,10 @@
   flex-wrap: wrap !important;
 }
 
+.flexColumn :global {
+  flex-direction: column !important;
+}
+
 .flex1 :global {
   flex: 1 !important;
 }

@@ -8,6 +8,10 @@
     font-size: inherit;
 }
 
+.button:disabled {
+    cursor: not-allowed;
+}
+
 /* Outline button */
 .outline {
     padding: 10px 20px;
@@ -19,14 +23,26 @@
     border-color: var(--primary-color);
 }
 
+.outline.primary:disabled {
+    color: rgba(var(--primary-color-rgb), 0.1);
+}
+
 .outline.secondary {
     color: var(--secondary-color-shade);
     border-color: var(--secondary-color);
 }
 
+.outline.secondary:disabled {
+    color: rgba(var(--secondary-color-rgb), 0.1);
+}
+
 .outline.danger {
     color: var(--danger-color-shade);
     border-color: var(--danger-color);
+}
+
+.outline.danger:disabled {
+    color: rgba(var(--danger-color-rgb), 0.1);
 }
 
 .outline:hover {
@@ -50,6 +66,10 @@
     background-color: var(--primary-color-shade);
 }
 
+.fill.primary:disabled {
+    color: rgba(var(--primary-color-contrast-rgb), 0.1);
+}
+
 .fill.secondary {
     color: var(--secondary-color-contrast);
     border-color: var(--secondary-color);
@@ -61,6 +81,10 @@
     background-color: var(--secondary-color-shade);
 }
 
+.fill.secondary:disabled {
+    color: rgba(var(--secondary-color-contrast-rgb), 0.1);
+}
+
 .fill.danger {
     color: var(--danger-color-contrast);
     border-color: var(--danger-color);
@@ -70,6 +94,10 @@
 .fill.danger:hover {
     border-color: var(--danger-color-shade);
     background-color: var(--danger-color-shade);
+}
+
+.fill.danger:disabled {
+    color: rgba(var(--danger-color-contrast-rgb), 0.1);
 }
 
 /* Toggle Button */
