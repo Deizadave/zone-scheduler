@@ -3,7 +3,7 @@ import globalStyles from '../../../App.module.css';
 import Button from '../../Button/Button';
 
 const ScheduleItem = () => {
-    const d = new Date;
+    const d = new Date();
     const time = d.toLocaleString();
 
     return (<>

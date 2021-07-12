@@ -16,8 +16,8 @@ export interface Schedule {
 export interface IAppState {
   zones: Zone[];
   schedules: Schedule[];
-  unit: string;
-  display: string;
+  unit: "C" | "F";
+  display: "list" | "grid";
 }
 
 const initialState: IAppState = {
@@ -30,25 +30,29 @@ const initialState: IAppState = {
 let AppContext: any = createContext(initialState);
 
 enum Actions {
+  ZONES_Set = "[ZONE] Set",
   SCHEDULE_Add = "[SCHEDULE] Add",
   SCHEDULE_Remove = "[SCHEDULE] Remove",
   TEMP_Set = '[TEMP] Set',
   DISPLAY_Set = '[DISPLAY] Set'
 }
 
-let reducer = (state: any, action: any) => {
+const reducer = (state: IAppState, action: any) => {
   switch(action.type) {
+    case Actions.ZONES_Set: {
+      return { ...state, zones: action.payload }
+    }
     case Actions.SCHEDULE_Add: {
-      return { ...state, schedules: [...state.schedules, action.schedule] }
+      return { ...state, schedules: [...state.schedules, action.payload] }
     }
     case Actions.SCHEDULE_Remove: {
-      return { ...state, schedules: [...state.schedules.filter((schedule: Schedule) => schedule.id !== action.id)] }
+      return { ...state, schedules: [...state.schedules.filter((schedule: Schedule) => schedule.id !== action.payload)] }
     }
     case Actions.TEMP_Set: {
-      return { ...state, unit: action.unit }
+      return { ...state, unit: action.payload }
     }
     case Actions.DISPLAY_Set: {
-      return { ...state, display: action.display }
+      return { ...state, display: action.payload }
     }
   }
   return state;
