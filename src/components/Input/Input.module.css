@@ -1,0 +1,73 @@
+.inputBox {
+    padding: 10px;
+    width: 100%;
+}
+
+.inputBoxInline {
+    width: auto;
+    margin-right: 5px;
+}
+
+.label {
+    font-weight: 500;
+    color: var(--medium-color);
+}
+
+.inputBoxInline .label {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.inputBoxInline .label::after {
+    content: ':';
+}
+
+.input {
+    font-weight: 500;
+    padding: 8px 10px;
+    height: 35px;
+    border-radius: 10px;
+    text-transform: capitalize;
+    color: var(--text-color);
+    border: 1px solid var(--medium-color);
+}
+
+.inputBoxInline .input {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.inputRadio {
+    margin: 0 5px;
+    padding: 0px;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    position: relative;
+    color: var(--medium-color);
+    border: 1px solid var(--light-color-shade);
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.inputRadio:hover {
+    background-color: var(--light-color);
+}
+
+.inputRadioActive {
+    color: var(--medium-color-shade);
+    background-color: var(--light-color-shade);
+}
+
+.inputRadio input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.inputRadio .material-icons-round{
+    font-size: 1rem;
+}
+
+.inputError {
+    border-color: var(--danger-color);
+}
