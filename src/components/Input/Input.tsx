@@ -12,7 +12,7 @@ interface Props {
     invalid?: boolean;
     shouldValidate?: boolean;
     touched?: boolean;
-    options?: {value: string, text?: string, icon?: string}[];
+    options?: {value: string | number, text?: string, icon?: string}[];
     width?: "50" | "100";
     info?: string;
     message?: string;
@@ -70,10 +70,10 @@ const Input:React.FC<Props> = (props) => {
         case ('radio'): inputElement = 
                 <div className={`${globalStyles.inlineFlex} ${globalStyles.flexCenterVer}`}>
                     {props.options?.map((option) => (
-                        <label key={option.value} htmlFor={option.value} title={option.text}
+                        <label key={option.value} htmlFor={option.value.toString()} title={option.text}
                             className={`${localStyles.inputRadio} ${globalStyles.flex} ${globalStyles.flexCenter}
                             ${props.value === option.value ? localStyles.inputRadioActive : ''} ${inputError ? localStyles.inputError : ''}`}>
-                            <input type="radio" name={props.label} value={option.value} id={option.value}
+                            <input type="radio" name={props.label} value={option.value} id={option.value.toString()}
                             checked={props.value === option.value} onChange={props.inputChanged} />
                             <span className="material-icons-round">{option.icon}</span>                        
                         </label>

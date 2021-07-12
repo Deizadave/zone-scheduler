@@ -2,12 +2,17 @@ import localStyles from './Item.module.css';
 import globalStyles from '../../../App.module.css';
 import Button from '../../Button/Button';
 
-const ScheduleItem = () => {
+interface Props {
+    display: "list" | "grid";
+}
+
+const ScheduleItem = ({display}: Props) => {
     const d = new Date();
     const time = d.toLocaleString();
 
     return (<>
-        <li className={`${localStyles.listItem} ${localStyles.listItemGrid} ${localStyles.listItemHot} ${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
+        <li className={`${localStyles.listItem} ${display === "grid" ? localStyles.listItemGrid : ''}
+            ${localStyles.listItemHot} ${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
             <div className={`${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
                 <div className={`${localStyles.temperature} ${globalStyles.flex} ${globalStyles.flexCenter}`}>
                     30.8°
@@ -26,7 +31,8 @@ const ScheduleItem = () => {
                 <Button type="icon" icon="delete_outline" design="outline" color="danger" label="Delete schedule" action={() => {}} />
             </div>
         </li>
-        <li className={`${localStyles.listItem} ${localStyles.listItemGrid} ${localStyles.listItemCold} ${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
+        <li className={`${localStyles.listItem} ${display === "grid" ? localStyles.listItemGrid : ''}
+            ${localStyles.listItemCold} ${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
             <div className={`${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
                 <div className={`${localStyles.temperature} ${globalStyles.flex} ${globalStyles.flexCenter}`}>
                     30.8°
@@ -45,7 +51,8 @@ const ScheduleItem = () => {
                 <Button type="icon" icon="delete_outline" design="outline" color="danger" label="Delete schedule" action={() => {}} />
             </div>
         </li>
-        <li className={`${localStyles.listItem} ${localStyles.listItemGrid} ${localStyles.listItemHot} ${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
+        <li className={`${localStyles.listItem} ${display === "grid" ? localStyles.listItemGrid : ''}
+            ${localStyles.listItemHot} ${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
             <div className={`${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
                 <div className={`${localStyles.temperature} ${globalStyles.flex} ${globalStyles.flexCenter}`}>
                     30.8°
