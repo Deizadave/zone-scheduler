@@ -94,7 +94,7 @@ const Scheduler = ({show, close}: Props) => {
             <section className={localStyles.modalContent} onClick={e => e.stopPropagation()}>
                 <header className={`${localStyles.modalHeader} ${globalStyles.flex} ${globalStyles.flexCenterVer} ${globalStyles.flexBetweenHor}`}>
                     <h1 className={`${globalStyles.flex1} ${globalStyles.fontSize3}`}>Schedule</h1>
-                    <Button type="button" color="primary" icon="close" label="" action={() => {setForm({...initialForm}); close()}} />
+                    <Button type="icon" color="primary" design="outline" icon="close" label="" action={() => {setForm({...initialForm}); close()}} />
                 </header>
                 <main className={localStyles.modalBody}>
                     {formFieldArray.map((field: any, i) => (
@@ -109,7 +109,7 @@ const Scheduler = ({show, close}: Props) => {
                 </main>
                 <footer className={`${localStyles.modalFooter} ${globalStyles.flex} ${globalStyles.flexBetweenHor}`}>
                     <Button type="toggle" color="secondary" label="Temperature unit" toggleLabel={['°F','°C']} />
-                    <Button type="button" design="fill" color="primary" label="Add schedule" action={addSchedule} disabled={!form.isValid} />
+                    <Button type="button" design="fill" color="primary" label="Save" action={addSchedule} disabled={!form.isValid} />
                 </footer>
             </section>
         </div>

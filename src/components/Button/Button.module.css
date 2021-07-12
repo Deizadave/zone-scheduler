@@ -153,3 +153,46 @@
 .toggle:hover {
     background-color: var(--light-color);
 }
+
+/* Icon Button */
+.icon {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon.outline {
+    border: 1px solid transparent;
+}
+
+.icon.outline.primary {
+    color: var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+.icon.outline.primary:hover {
+    border-color: var(--primary-color);
+}
+
+.icon.outline.secondary {
+    color: var(--secondary-color);
+    background-color: rgba(var(--secondary-color-rgb), 0.1);
+}
+
+.icon.outline.secondary:hover {
+    border-color: var(--secondary-color);
+}
+
+.icon.outline.danger {
+    color: var(--danger-color);
+    background-color: rgba(var(--danger-color-rgb), 0.1);
+}
+
+.icon.outline.danger:hover {
+    border-color: var(--danger-color);
+}
+
+.icon:hover {
+    background-color: var(--light-color);
+}

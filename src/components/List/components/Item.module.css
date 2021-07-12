@@ -1,0 +1,87 @@
+.listItem {
+    width: 100%;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px 20px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.06);
+    background-color: var(--background-color);
+    color: var(--medium-color-shade);
+    transition: color 0.2s ease-out;
+    justify-content: space-between;
+}
+
+.listItemGrid {
+    padding: 20px 0;
+    width: calc(33.33% - 10px);
+}
+
+.listItem:hover {
+    color: var(--text-color);
+}
+
+.temperature {
+    width: 60px;
+    height: 60px;
+    font-size: 1.25rem;
+    margin-right: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: var(--text-color);
+    background-color: var(--light-color);
+}
+
+.listItemGrid .temperature {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    margin: 0 20px 10px;
+}
+
+.listItemHot .temperature {
+    color: var(--danger-color);
+    box-shadow: inset 0px -15px 20px -10px rgba(var(--danger-color-rgb),0.5),
+        inset 0px -15px 20px -15px rgba(var(--danger-color-rgb),1);
+}
+
+.listItemGrid.listItemHot .temperature {
+    box-shadow: inset 0px -15px 20px -10px rgba(var(--danger-color-rgb),0.2),
+        inset 0px -15px 20px -10px rgba(var(--danger-color-rgb),0.4);
+}
+
+.listItemCold .temperature {
+    color: var(--secondary-color-shade);
+    box-shadow: inset 0px -15px 20px -10px rgba(var(--secondary-color-rgb),0.5),
+        inset 0px -15px 20px -15px rgba(var(--secondary-color-rgb),1);
+}
+
+.listItemGrid.listItemCold .temperature {
+    box-shadow: inset 0px -15px 20px -10px rgba(var(--secondary-color-rgb),0.2),
+        inset 0px -15px 20px -10px rgba(var(--secondary-color-rgb),0.4);
+}
+
+.text {
+    font-weight: 500;
+    margin-right: 30px;
+}
+
+.listItemGrid .text {
+    width: 100%;
+    padding: 5px 20px;
+}
+
+.listItemHot .textIcon {
+    color: var(--danger-color);
+}
+
+.listItemCold .textIcon {
+    color: var(--secondary-color);
+}
+
+.listItemGrid .listItemFooter {
+    width: 100%;
+    padding: 10px 20px 0;
+    margin-top: 10px;
+    border-top: 1px solid var(--light-color);
+    justify-content: flex-end;
+}

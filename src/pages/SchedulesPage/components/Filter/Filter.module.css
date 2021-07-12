@@ -1,5 +1,6 @@
 .filter {
     padding: 20px;
+    margin-bottom: 10px;
     border-radius: 10px;
     border: 1px solid var(--light-color-shade);
     background-color: var(--background-color);
