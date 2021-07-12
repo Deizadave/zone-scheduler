@@ -20,7 +20,7 @@ function Button({
           <>
             <span className={`
               ${localStyles.toggleSlider} ${label === toggleLabel[1] ? localStyles.toggleSliderRight : ''}
-              ${globalStyles.flex} ${globalStyles.flexCenter} material-icons
+              ${globalStyles.flex} ${globalStyles.flexCenter} material-icons-round
             `}>thermostat</span>
             <span>{toggleLabel[0]}</span>
             <span>{toggleLabel[1]}</span>

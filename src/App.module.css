@@ -3,6 +3,7 @@
   font-size: 14px;
 
   --background-color: #FFFFFF;
+  --text-color: #101010;
   
   --primary-color: #003060;
   --primary-color-rgb: 0,48,96;
@@ -22,6 +23,12 @@
   --danger-color-contrast-rgb: 255,255,255;
   --danger-color-shade: #B4184C;
 
+  --medium-color: #999999;
+  --medium-color-rgb: 153,153,153;
+  --medium-color-contrast: #000000;
+  --medium-color-contrast-rgb: 0,0,0;
+  --medium-color-shade: #666666;
+
   --light-color: #F9F9F9;
   --light-color-rgb: 249,249,249;
   --light-color-contrast: #010101;
@@ -33,6 +40,11 @@
 /* Layout */
 .flex :global {
   display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.inlineFlex :global {
+  display: inline-flex !important;
   flex-wrap: wrap !important;
 }
 
