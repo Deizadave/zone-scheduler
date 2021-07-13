@@ -45,7 +45,9 @@ const reducer = (state: IAppState, action: any) => {
       return { ...state, zones: action.payload }
     }
     case Actions.SCHEDULE_Add: {
-      return { ...state, schedules: [...state.schedules, ...action.payload] }
+      const updatedSchedules = [...state.schedules, ...action.payload];
+      updatedSchedules.sort((a: Schedule, b: Schedule) => new Date(b.time).getTime() - new Date(a.time).getTime());      
+      return { ...state, schedules: updatedSchedules }
     }
     case Actions.SCHEDULE_Remove: {
       return { ...state, schedules: [...state.schedules.filter((schedule: Schedule) => schedule.id !== action.payload)] }

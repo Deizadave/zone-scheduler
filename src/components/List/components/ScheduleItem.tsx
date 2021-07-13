@@ -1,4 +1,4 @@
-import localStyles from './Item.module.css';
+import localStyles from './ListItem.module.css';
 import globalStyles from '../../../App.module.css';
 import Button from '../../Button/Button';
 
