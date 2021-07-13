@@ -10,15 +10,16 @@ interface Props {
     display: "list" | "grid";
     editItem: (id: number) => void;
     deleteItem: (id: number) => void;
+    title?: string;
 }
 
-const List = ({type, data, display, editItem, deleteItem}: Props) => {
+const List = ({type, data, display, editItem, deleteItem, title = "List"}: Props) => {
     const {state} = useContext(AppContext);
     
     return (
         
         <section>
-            <h2 className={`${localStyles.title} ${globalStyles.fontSize3}`}>All zones schedules ({data.length})</h2>
+            <h2 className={`${localStyles.title} ${globalStyles.fontSize3}`}>{title} ({data.length})</h2>
             {data.length ?
                 <ul className={`${globalStyles.flex} ${localStyles.list} ${display === "grid" ? localStyles.listGrid : ''}`}>
                     {type === "schedules" ?

@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import pageStyles from '../Pages.module.css';
 import Scheduler from "../../components/Scheduler/Scheduler";
 import List from "../../components/List/List";
-import { AppContext, Actions, Schedule } from "../../store/Store";
+import { AppContext, Actions, Schedule, Zone } from "../../store/Store";
 import Loading from "../../components/Loading/Loading";
 
 const Schedules = () => {
@@ -13,6 +13,7 @@ const Schedules = () => {
     const [schedules, setSchedules] = useState<Schedule[]>([]);
     const [selectedSchedule, setSelectedSchedule] = useState<Schedule | undefined>(undefined);
     const [zone, setZone] = useState<number>(-1);
+    const [zoneName, setZoneName] = useState<string>("All zones");
 
     useEffect(() => {
         if (!state.zones.length) {
@@ -33,8 +34,10 @@ const Schedules = () => {
     useEffect(() => {               
         if (Number(zone) === -1) {
             setSchedules(state.schedules);
+            setZoneName("All zones");
         } else {            
             setSchedules(state.schedules.filter((s: Schedule) => s.zoneId.toString() === zone.toString()));
+            setZoneName(state.zones.find((z: Schedule) => z.id.toString() === zone.toString()).name)
         }        
     }, [state.schedules, zone]);
 
@@ -62,7 +65,7 @@ const Schedules = () => {
                         display={state.display} changeDisplay={(d) => dispatch({type: Actions.DISPLAY_Set, payload: d})}
                         addSchedule={() => setShowScheduler(true)} />
                     <Scheduler show={showScheduler} close={closeScheduler} selectedSchedule={selectedSchedule} />
-                    <List data={schedules} type="schedules" display={state.display}
+                    <List data={schedules} type="schedules" display={state.display} title={zoneName}
                         editItem={(id) => editSchedule(id)} deleteItem={(id) => deleteSchedule(id)} />
                 </> :
                 <Loading message="Fetching zones" />
