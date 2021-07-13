@@ -109,7 +109,7 @@ const Scheduler = ({show, close, selectedSchedule}: Props) => {
         return isValid;
     }
 
-    const addSchedule = () => {        
+    const addSchedule = () => {
         if (selectedSchedule) {            
             const updatedSchedule = {
                 ...selectedSchedule,
@@ -131,8 +131,7 @@ const Scheduler = ({show, close, selectedSchedule}: Props) => {
             });
             dispatch({type: Actions.SCHEDULE_Add, payload: newSchedules});
         }
-        setForm({...initialForm});
-        close();
+        closeScheduler();
     }
 
     const closeScheduler = () => {

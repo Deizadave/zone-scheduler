@@ -49,7 +49,7 @@ const Schedules = () => {
     }
 
     const deleteSchedule = (id: number) => {
-        console.log(id);
+        dispatch({type: Actions.SCHEDULE_Remove, payload: id});
     }
     
     

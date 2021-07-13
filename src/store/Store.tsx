@@ -53,7 +53,7 @@ const reducer = (state: IAppState, action: any) => {
     case Actions.SCHEDULE_Update: {
       let updatedIndex = state.schedules.findIndex((schedule: Schedule) => schedule.id === action.payload.id);
       state.schedules[updatedIndex] = action.payload;      
-      return { ...state, schedules: state.schedules }
+      return { ...state, schedules: [...state.schedules] }
     }
     case Actions.UNIT_Toggle: {
       return { ...state, unit: action.payload }
