@@ -58,7 +58,7 @@ const Input:React.FC<Props> = (props) => {
                         </div>
                     : null}
                     <select className={`${localStyles.input} ${inputError ? localStyles.inputError : ''}`}
-                        id={props.index} defaultValue={`Select ${props.label}`} onChange={props.inputChanged}>
+                        id={props.index} defaultValue={`Select ${props.label}`} {...props.elementConfig} onChange={props.inputChanged}>
                         <option value={`Select ${props.label}`} disabled>{`Select ${props.label}`}</option>
                         {props.options?.filter(option => !props.value.includes(option.value.toString())).map((option) => (
                             <option value={option.value} key={option.value}>

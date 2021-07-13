@@ -34,6 +34,7 @@ enum Actions {
   ZONES_Set = "[ZONE] Set",
   SCHEDULE_Add = "[SCHEDULE] Add",
   SCHEDULE_Remove = "[SCHEDULE] Remove",
+  SCHEDULE_Update = "[SCHEDULE] Update",
   UNIT_Toggle = '[UNIT] Toggle',
   DISPLAY_Set = '[DISPLAY] Set'
 }
@@ -48,6 +49,11 @@ const reducer = (state: IAppState, action: any) => {
     }
     case Actions.SCHEDULE_Remove: {
       return { ...state, schedules: [...state.schedules.filter((schedule: Schedule) => schedule.id !== action.payload)] }
+    }
+    case Actions.SCHEDULE_Update: {
+      let updatedIndex = state.schedules.findIndex((schedule: Schedule) => schedule.id === action.payload.id);
+      state.schedules[updatedIndex] = action.payload;      
+      return { ...state, schedules: state.schedules }
     }
     case Actions.UNIT_Toggle: {
       return { ...state, unit: action.payload }

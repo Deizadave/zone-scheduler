@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import localStyles from './Scheduler.module.css';
 import globalStyles from '../../App.module.css';
 import Input from '../Input/Input';
@@ -8,9 +8,10 @@ import { Actions, AppContext, Schedule } from '../../store/Store';
 interface Props {
     show: boolean;
     close: () => void;
+    selectedSchedule?: Schedule;
 }
 
-const Scheduler = ({show, close}: Props) => {
+const Scheduler = ({show, close, selectedSchedule}: Props) => {
     const {state, dispatch} = useContext(AppContext);
     const zonesList = [
         ...state.zones.map((z: any) => ({
@@ -39,7 +40,35 @@ const Scheduler = ({show, close}: Props) => {
         },
         isValid: false
     };
+    
     const [form, setForm] = useState<any>({...initialForm});
+
+    useEffect(() => {
+        if (selectedSchedule) {
+            setForm((prevForm: any) => ({
+                ...prevForm,
+                fields: {
+                    ...prevForm.fields,
+                    zones: {
+                        ...prevForm.fields.zones,
+                        value: [selectedSchedule.zoneId],
+                        elementConfig: {disabled: true},
+                        valid: true
+                    },
+                    temperature: {
+                        ...prevForm.fields.temperature,
+                        value: selectedSchedule.temperature,
+                        valid: true
+                    },
+                    time: {
+                        ...prevForm.fields.time,
+                        value: selectedSchedule.time,
+                        valid: true
+                    }
+                }
+            }))
+        }
+    }, [selectedSchedule])
     
     const formFieldArray = [];
     for (let key in form.fields) {
@@ -63,7 +92,7 @@ const Scheduler = ({show, close}: Props) => {
         
         let formIsValid = true;
         for (let inputField in updatedForm) {
-            formIsValid = updatedForm[inputField].valid && formIsValid
+            formIsValid = updatedForm[inputField].valid && formIsValid;            
         }
         
         setForm({fields: updatedForm, isValid: formIsValid});
@@ -80,19 +109,33 @@ const Scheduler = ({show, close}: Props) => {
         return isValid;
     }
 
-    const addSchedule = () => {
-        const selectedZones = form.fields.zones.value;
-        const newSchedules: Schedule[] = selectedZones.map((z: number, i: number) => {
-            const zone = state.zones.find((zone: Schedule) => zone.id.toString() === z.toString());
-            return ({
-                id: Date.now()+i,
-                zone: zone.name,
-                zoneId: Number(z),
+    const addSchedule = () => {        
+        if (selectedSchedule) {            
+            const updatedSchedule = {
+                ...selectedSchedule,
                 temperature: form.fields.temperature.value,
                 time: form.fields.time.value
-            })
-        });
-        dispatch({type: Actions.SCHEDULE_Add, payload: newSchedules});
+            };
+            dispatch({type: Actions.SCHEDULE_Update, payload: updatedSchedule});
+        } else {
+            const selectedZones = form.fields.zones.value;
+            const newSchedules: Schedule[] = selectedZones.map((z: number, i: number) => {
+                const zone = state.zones.find((zone: Schedule) => zone.id.toString() === z.toString());
+                return ({
+                    id: Date.now()+i,
+                    zone: zone.name,
+                    zoneId: Number(z),
+                    temperature: form.fields.temperature.value,
+                    time: form.fields.time.value
+                })
+            });
+            dispatch({type: Actions.SCHEDULE_Add, payload: newSchedules});
+        }
+        setForm({...initialForm});
+        close();
+    }
+
+    const closeScheduler = () => {
         setForm({...initialForm});
         close();
     }
@@ -106,7 +149,7 @@ const Scheduler = ({show, close}: Props) => {
             <section className={localStyles.modalContent} onClick={e => e.stopPropagation()}>
                 <header className={`${localStyles.modalHeader} ${globalStyles.flex} ${globalStyles.flexCenterVer} ${globalStyles.flexBetweenHor}`}>
                     <h1 className={`${globalStyles.flex1} ${globalStyles.fontSize3}`}>Schedule</h1>
-                    <Button type="icon" color="primary" design="outline" icon="close" label="" action={() => {setForm({...initialForm}); close()}} />
+                    <Button type="icon" color="primary" design="outline" icon="close" label="" action={closeScheduler} />
                 </header>
                 <main className={localStyles.modalBody}>
                     {formFieldArray.map((field: any, i) => (

@@ -7,9 +7,11 @@ interface Props {
     temperature: number;
     time: string;
     zone: string;
+    editItem: () => void;
+    deleteItem: () => void;
 }
 
-const ScheduleItem = ({display, temperature, time, zone}: Props) => {
+const ScheduleItem = ({display, temperature, time, zone, editItem, deleteItem}: Props) => {
     const t = new Date(time);
     const timeString = t.toLocaleString();
 
@@ -29,9 +31,9 @@ const ScheduleItem = ({display, temperature, time, zone}: Props) => {
                 </h4>
             </div>
             <div className={`${localStyles.listItemFooter} ${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
-                <Button type="icon" icon="edit" design="outline" color="secondary" label="Edit schedule" action={() => {}} />
+                <Button type="icon" icon="edit" design="outline" color="secondary" label="Edit schedule" action={editItem} />
                 &nbsp;&nbsp;
-                <Button type="icon" icon="delete_outline" design="outline" color="danger" label="Delete schedule" action={() => {}} />
+                <Button type="icon" icon="delete_outline" design="outline" color="danger" label="Delete schedule" action={deleteItem} />
             </div>
         </li>
     )

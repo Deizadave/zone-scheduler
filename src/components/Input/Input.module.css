@@ -36,6 +36,10 @@
     border: 1px solid var(--medium-color);
 }
 
+.input:disabled {
+    cursor: not-allowed;
+}
+
 .inputBoxInline .input {
     min-width: 200px;
     max-width: 200px;
