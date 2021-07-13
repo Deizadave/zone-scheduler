@@ -42,7 +42,7 @@ const Filter = ({addSchedule, zone, changeZone, changeDisplay}: Props) => {
                             options={zonesList}
                             inputChanged={(e) => inputChangedHandler(e, "zone")} />
                 : null}
-                <span>
+                <span className={globalStyles.hiddenSm}>
                     {(state.display && changeDisplay) ? 
                         <Input value={state.display}
                                 index="filterDiplay"
@@ -56,7 +56,12 @@ const Filter = ({addSchedule, zone, changeZone, changeDisplay}: Props) => {
                     : null}
                 </span>
             </div>
-            <Button type="button" design="fill" color="primary" label="Add schedule" action={addSchedule} />
+            <span className={globalStyles.hiddenSm}>
+                <Button type="button" design="fill" color="primary" label="Add schedule" action={addSchedule} />
+            </span>
+            <span className={globalStyles.visibleSm}>
+                <Button type="fab" design="fill" icon="alarm_add" color="primary" label="Add schedule" action={addSchedule} />
+            </span>
         </section>
     );
 }

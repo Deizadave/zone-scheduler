@@ -94,6 +94,25 @@
   font-size: 2rem !important;
 }
 
+/* Responsive Utitlities */
+.hiddenSm :global {
+  display: inherit !important;
+}
+
+.visibleSm :global {
+  display: none !important;
+}
+
+@media (max-width: 576px) {
+  .hiddenSm :global {
+    display: none !important;
+  }
+  
+  .visibleSm :global {
+    display: inherit !important;
+  }
+}
+
 /* APP */
 .app {
   height: 100vh;

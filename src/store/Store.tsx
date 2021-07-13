@@ -3,7 +3,6 @@ import { createContext, useReducer } from "react";
 export interface Zone {
   id: number;
   name: string;
-  schedules?: number;
 }
 
 export interface Schedule {
@@ -47,7 +46,7 @@ const reducer = (state: IAppState, action: any) => {
     }
     case Actions.SCHEDULE_Add: {
       const updatedSchedules = [...state.schedules, ...action.payload];
-      updatedSchedules.sort((a: Schedule, b: Schedule) => new Date(b.time).getTime() - new Date(a.time).getTime());      
+      updatedSchedules.sort((a: Schedule, b: Schedule) => new Date(b.time).getTime() - new Date(a.time).getTime());
       return { ...state, schedules: updatedSchedules }
     }
     case Actions.SCHEDULE_Remove: {

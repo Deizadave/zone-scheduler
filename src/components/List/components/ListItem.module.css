@@ -39,6 +39,17 @@
     margin: 0 20px 10px;
 }
 
+.listItemPlain .temperature {
+    color: var(--medium-color-shade);
+    box-shadow: inset 0px -15px 20px -10px rgba(var(--medium-color-rgb),0.5),
+        inset 0px -15px 20px -15px rgba(var(--medium-color-rgb),1);
+}
+
+.listItemGrid.listItemPlain .temperature {
+    box-shadow: inset 0px -15px 20px -10px rgba(var(--medium-color-rgb),0.2),
+        inset 0px -15px 20px -10px rgba(var(--medium-color-rgb),0.4);
+}
+
 .listItemHot .temperature {
     color: var(--danger-color);
     box-shadow: inset 0px -15px 20px -10px rgba(var(--danger-color-rgb),0.5),
@@ -71,6 +82,10 @@
     padding: 5px 20px;
 }
 
+.listItemPlain .textIcon {
+    color: var(--medium-color);
+}
+
 .listItemHot .textIcon {
     color: var(--danger-color);
 }
@@ -85,4 +100,31 @@
     margin-top: 10px;
     border-top: 1px solid var(--light-color);
     justify-content: flex-end;
+}
+
+@media (max-width: 576px) {
+    .listItem {
+      padding: 10px;
+    }
+
+    .temperature {
+        width: 100%;
+        height: 45px;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        margin: 0 0 10px;
+    }
+
+    .text {
+        width: 100%;
+        padding: 5px 0px;
+    }
+
+    .listItemFooter {
+        width: 100%;
+        padding: 5px 10px 0;
+        margin-top: 5px;
+        border-top: 1px solid var(--light-color);
+        justify-content: flex-end;
+    }
 }

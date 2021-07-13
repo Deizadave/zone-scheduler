@@ -9,9 +9,10 @@ interface Props {
     show: boolean;
     close: () => void;
     selectedSchedule?: Schedule;
+    selectedZone?: number;
 }
 
-const Scheduler = ({show, close, selectedSchedule}: Props) => {
+const Scheduler = ({show, close, selectedSchedule, selectedZone}: Props) => {
     const {state, dispatch} = useContext(AppContext);
     const zonesList = [
         ...state.zones.map((z: any) => ({
@@ -68,7 +69,23 @@ const Scheduler = ({show, close, selectedSchedule}: Props) => {
                 }
             }))
         }
-    }, [selectedSchedule])
+    }, [selectedSchedule]);
+
+    useEffect(() => {
+        if (selectedZone) {
+            setForm((prevForm: any) => ({
+                ...prevForm,
+                fields: {
+                    ...prevForm.fields,
+                    zones: {
+                        ...prevForm.fields.zones,
+                        value: [selectedZone],
+                        valid: true
+                    }
+                }
+            }))
+        }
+    }, [selectedZone])
     
     const formFieldArray = [];
     for (let key in form.fields) {
@@ -145,7 +162,7 @@ const Scheduler = ({show, close, selectedSchedule}: Props) => {
     }
 
     return (
-        <div className={`${localStyles.modal} ${globalStyles.flex} ${globalStyles.flexCenter}`}>
+        <div className={`${localStyles.modal} ${globalStyles.flex} ${globalStyles.flexCenterHor}`}>
             <section className={localStyles.modalContent} onClick={e => e.stopPropagation()}>
                 <header className={`${localStyles.modalHeader} ${globalStyles.flex} ${globalStyles.flexCenterVer} ${globalStyles.flexBetweenHor}`}>
                     <h1 className={`${globalStyles.flex1} ${globalStyles.fontSize3}`}>Schedule</h1>

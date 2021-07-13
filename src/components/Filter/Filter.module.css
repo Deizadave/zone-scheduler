@@ -5,3 +5,9 @@
     border: 1px solid var(--light-color-shade);
     background-color: var(--background-color);
 }
+
+@media (max-width: 576px) {
+    .filter {
+      padding: 10px;
+    }
+}

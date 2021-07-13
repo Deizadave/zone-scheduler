@@ -3,17 +3,19 @@ import globalStyles from '../../App.module.css';
 import localStyles from './List.module.css';
 import { AppContext, Schedule, Zone } from '../../store/Store';
 import { useContext } from 'react';
+import ZoneItem from './components/ZoneItem';
 
 interface Props {
     type: "schedules" | "zones";
     data: any[];
     display: "list" | "grid";
+    title?: string;
     editItem?: (id: number) => void;
     deleteItem?: (id: number) => void;
-    title?: string;
+    addSchedule?: (id: number) => void;
 }
 
-const List = ({type, data, display, editItem, deleteItem, title = "List"}: Props) => {
+const List = ({type, data, display, title = "List", editItem, deleteItem, addSchedule}: Props) => {
     const {state} = useContext(AppContext);
     
     return (
@@ -36,11 +38,13 @@ const List = ({type, data, display, editItem, deleteItem, title = "List"}: Props
                                     deleteItem={() => deleteItem ? deleteItem(item.id) : null} />
                             )
                         }) :
-                         data.map((item: Zone) => (
-                            <div>
-                                item
-                            </div>
-                         ))
+                        data.map((item: Zone) => {
+                                return (
+                                <ZoneItem  display={display} key={item.id}
+                                    name={item.name} id={item.id}
+                                    addSchedule={() => addSchedule ? addSchedule(item.id) : null} />
+                            )}
+                        )
                      }
                 </ul> :
                 <div className={`${globalStyles.flex} ${globalStyles.flexCenter} ${globalStyles.flexColumn} ${localStyles.emptyList}`}>

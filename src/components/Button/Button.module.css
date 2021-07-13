@@ -197,3 +197,22 @@
 .icon:hover {
     background-color: var(--light-color);
 }
+
+/* FAB Button */
+.fab {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 56px;
+    height: 56px;
+    z-index: 90;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+}
+
+.fab .buttonIcon {
+    font-size: 2.2rem;
+}

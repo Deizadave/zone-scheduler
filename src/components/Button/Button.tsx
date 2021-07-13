@@ -2,7 +2,7 @@ import localStyles from './Button.module.css';
 import globalStyles from '../../App.module.css';
 
 interface Props {
-  type: "button" | "toggle" | "link" | "icon";
+  type: "button" | "toggle" | "link" | "icon" | "fab";
   design?: "" | "fill" | "outline";
   color?: "primary" | "secondary" | "danger";
   label: string;
@@ -30,14 +30,14 @@ function Button({
         <span>{toggleLabel[1]}</span>
       </>
     )
-  } else if (type === "icon") {
+  } else if (type === "icon" || type === "fab") {
     content = <span className={`${localStyles.buttonIcon} material-icons-round`}>{icon}</span>
   }
 
   return (
     <button className={`${localStyles.button} ${localStyles[type]} ${localStyles[design]} ${localStyles[color]}`}
-      onClick={action ? action : undefined} disabled={disabled}>
-        {(type !== "icon" && icon) ? <span className="material-icons-round">{icon}</span> : null}
+      onClick={action ? action : undefined} title={label} disabled={disabled}>
+        {(!["icon", "fab"].includes(type) && icon) ? <span className="material-icons-round">{icon}</span> : null}
         {content}
     </button>
   );

@@ -21,3 +21,9 @@
     font-weight: 500;
     color: var(--medium-color-shade);
 }
+
+@media (max-width: 576px) {
+    .title {
+      padding: 10px 10px 5px;
+    }
+}
