@@ -1,6 +1,8 @@
 import localStyles from './ListItem.module.css';
 import globalStyles from '../../../App.module.css';
 import Button from '../../Button/Button';
+import { useContext } from 'react';
+import { AppContext } from '../../../store/Store';
 
 interface Props {
     display: "list" | "grid";
@@ -12,12 +14,16 @@ interface Props {
 }
 
 const ScheduleItem = ({display, temperature, time, zone, editItem, deleteItem}: Props) => {
+    const {state} = useContext(AppContext);
+
     const t = new Date(time);
     const timeString = t.toLocaleString();
 
+    const temperatureLimit = state.unit === "°C" ? 15 : 59;
+
     return (
         <li className={`${localStyles.listItem} ${display === "grid" ? localStyles.listItemGrid : ''}
-            ${(temperature > 18) ? localStyles.listItemHot : localStyles.listItemCold} ${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
+            ${(temperature > temperatureLimit) ? localStyles.listItemHot : localStyles.listItemCold} ${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
             <div className={`${globalStyles.flex} ${globalStyles.flexCenterVer}`}>
                 <div className={`${localStyles.temperature} ${globalStyles.flex} ${globalStyles.flexCenter}`}>
                     {temperature}°

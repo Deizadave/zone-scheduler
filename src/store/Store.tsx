@@ -11,6 +11,7 @@ export interface Schedule {
   zoneId: number;
   zone: string;
   temperature: number;
+  unit: "°C" | "°F";
   time: string;
 }
 

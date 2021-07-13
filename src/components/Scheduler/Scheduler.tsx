@@ -126,6 +126,7 @@ const Scheduler = ({show, close, selectedSchedule}: Props) => {
                     zone: zone.name,
                     zoneId: Number(z),
                     temperature: form.fields.temperature.value,
+                    unit: state.unit,
                     time: form.fields.time.value
                 })
             });
