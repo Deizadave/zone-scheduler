@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 import Loading from './components/Loading/Loading';
 const SchedulesPage = React.lazy(() => import('./pages/SchedulesPage/SchedulesPage'));
 const ZonesPage = React.lazy(() => import('./pages/ZonesPage/ZonesPage'));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={SchedulesPage} />
             <Route path="/zones" exact component={ZonesPage} />
+            <Route path="/*" component={NotFoundPage} />
           </Switch>
         </main>
       </Suspense>

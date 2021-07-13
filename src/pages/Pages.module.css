@@ -24,6 +24,12 @@
 .page::-webkit-scrollbar-thumb:hover {
   background: rgba(var(--primary-color-rgb), 0.9);
 }
+
+.notFound {
+  height: 100%;
+  color: var(--medium-color-shade);
+  padding-bottom: 50px;
+}
   
 @media (max-width: 576px) {
   .page {
