@@ -165,7 +165,7 @@ const Scheduler = ({show, close, selectedSchedule, selectedZone}: Props) => {
 
     return (
         <div className={`${localStyles.modal} ${globalStyles.flex} ${globalStyles.flexCenterHor}`}>
-            <form className={localStyles.modalContent} onClick={e => e.stopPropagation()}>
+            <form className={localStyles.modalContent} onSubmit={(e) => e.preventDefault()} onClick={e => e.stopPropagation()}>
                 <header className={`${localStyles.modalHeader} ${globalStyles.flex} ${globalStyles.flexCenterVer} ${globalStyles.flexBetweenHor}`}>
                     <h1 className={`${globalStyles.flex1} ${globalStyles.fontSize3}`}>Schedule</h1>
                     <Button type="icon" color="primary" design="outline" icon="close" label="" action={closeScheduler} />
