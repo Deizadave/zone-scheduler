@@ -8,8 +8,8 @@ interface Props {
     type: "schedules" | "zones";
     data: any[];
     display: "list" | "grid";
-    editItem: (id: number) => void;
-    deleteItem: (id: number) => void;
+    editItem?: (id: number) => void;
+    deleteItem?: (id: number) => void;
     title?: string;
 }
 
@@ -32,7 +32,8 @@ const List = ({type, data, display, editItem, deleteItem, title = "List"}: Props
                             return (
                                 <ScheduleItem key={item.id} display={display}
                                     temperature={temperature} zone={item.zone} time={item.time}
-                                    editItem={() => editItem(item.id)} deleteItem={() => deleteItem(item.id)} />
+                                    editItem={() => editItem ? editItem(item.id) : null}
+                                    deleteItem={() => deleteItem ? deleteItem(item.id) : null} />
                             )
                         }) :
                          data.map((item: Zone) => (

@@ -7,7 +7,7 @@ import List from "../../components/List/List";
 import { AppContext, Actions, Schedule, Zone } from "../../store/Store";
 import Loading from "../../components/Loading/Loading";
 
-const SchedulesPage = () => {
+const ZonesPage = () => {
     const {state, dispatch} = useContext(AppContext);
     const [showScheduler, setShowScheduler] = useState<boolean>(false);
     const [schedules, setSchedules] = useState<Schedule[]>([]);
@@ -58,15 +58,14 @@ const SchedulesPage = () => {
     
     return (
         <div className={localStyles.page}>
-            <Header title="Schedules" />
+            <Header title="Zones" />
             {state.zones.length ?
                 <>
-                    <Filter zone={zone} changeZone={(z) => setZone(z)}
+                    <Filter addSchedule={() => setShowScheduler(true)}
                         display={state.display} changeDisplay={(d) => dispatch({type: Actions.DISPLAY_Set, payload: d})}
-                        addSchedule={() => setShowScheduler(true)} />
+                        />
                     <Scheduler show={showScheduler} close={closeScheduler} selectedSchedule={selectedSchedule} />
-                    <List data={schedules} type="schedules" display={state.display} title={zoneName}
-                        editItem={(id) => editSchedule(id)} deleteItem={(id) => deleteSchedule(id)} />
+                    <List data={schedules} type="schedules" display={state.display} title="All zones" />
                 </> :
                 <Loading message="Fetching zones" />
             }
@@ -74,4 +73,4 @@ const SchedulesPage = () => {
     )
 };
 
-export default SchedulesPage;
+export default ZonesPage;

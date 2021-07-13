@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import Button from "../../../../components/Button/Button";
+import Button from "../Button/Button";
 import localStyles from './Filter.module.css';
-import globalStyles from '../../../../App.module.css';
-import Input from "../../../../components/Input/Input";
-import { AppContext } from "../../../../store/Store";
+import globalStyles from '../../App.module.css';
+import Input from "../Input/Input";
+import { AppContext } from "../../store/Store";
 
 interface Props {
     addSchedule: () => void;

@@ -20,7 +20,7 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/zones" onClick={() => setOpen(false)} className={`${localStyles.menuItem} ${globalStyles.fontSize2} ${location.pathname === "zones" ? localStyles.menuItemActive : ''}`}>
+                <Link to="/zones" onClick={() => setOpen(false)} className={`${localStyles.menuItem} ${globalStyles.fontSize2} ${location.pathname === "/zones" ? localStyles.menuItemActive : ''}`}>
                   <span className={`${localStyles.menuItemIcon} ${globalStyles.flex} ${globalStyles.flexCenter} material-icons-round`}>pin_drop</span>
                   Zones
                 </Link>
