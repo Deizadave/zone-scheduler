@@ -115,6 +115,7 @@
 .toggleSlider {
     position: absolute;
     top: 5px;
+    left: 10px;
     width: 28px;
     height: 28px;
     border-radius: 5px;
@@ -123,7 +124,7 @@
 }
 
 .toggleSliderRight {
-    right: 10px;
+    left: calc(100% - 38px);
 }
 
 .toggle.primary {

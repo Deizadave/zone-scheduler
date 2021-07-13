@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Button from "../../../../components/Button/Button";
 import localStyles from './Filter.module.css';
 import globalStyles from '../../../../App.module.css';
 import Input from "../../../../components/Input/Input";
-import { AppContext, IAppState } from "../../../../store/Store";
+import { AppContext } from "../../../../store/Store";
 
 interface Props {
     addSchedule: () => void;
-    zone?: string;
-    changeZone?: (args: string) => void;
+    zone?: number;
+    changeZone?: (args: number) => void;
     display?: string;
     changeDisplay?: (args: "list" | "grid") => void;
 }
@@ -25,7 +25,7 @@ const Filter = ({addSchedule, zone, changeZone, changeDisplay}: Props) => {
     }
     
     const zonesList = [
-        {value: 'all', text: 'All zones'},
+        {value: -1, text: 'All zones'},
         ...state.zones.map((z: any) => ({
             value: z.id, text: z.name
         }))
@@ -42,17 +42,19 @@ const Filter = ({addSchedule, zone, changeZone, changeDisplay}: Props) => {
                             options={zonesList}
                             inputChanged={(e) => inputChangedHandler(e, "zone")} />
                 : null}
-                {(state.display && changeDisplay) ? 
-                    <Input value={state.display}
-                            index="filterDiplay"
-                            label="Display" layout="inline"
-                            elementType="radio"
-                            options={[
-                                {value: 'list', icon: 'view_list', text: 'List'},
-                                {value: 'grid', icon: 'grid_view', text: 'Grid'},
-                            ]}
-                            inputChanged={(e) => inputChangedHandler(e, "display")} />
-                : null}
+                <span>
+                    {(state.display && changeDisplay) ? 
+                        <Input value={state.display}
+                                index="filterDiplay"
+                                label="Display" layout="inline"
+                                elementType="radio"
+                                options={[
+                                    {value: 'list', icon: 'view_list', text: 'List'},
+                                    {value: 'grid', icon: 'grid_view', text: 'Grid'},
+                                ]}
+                                inputChanged={(e) => inputChangedHandler(e, "display")} />
+                    : null}
+                </span>
             </div>
             <Button type="button" design="fill" color="primary" label="Add schedule" action={addSchedule} />
         </section>

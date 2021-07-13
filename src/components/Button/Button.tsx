@@ -8,13 +8,14 @@ interface Props {
   label: string;
   icon?: string;
   toggleLabel?: [string, string];
-  action?: () => any;
+  activeLabel?: string;
+  action?: <T = unknown>(args?: T) => any;
   link?: string;
   disabled?: boolean;
 }
 
 function Button({
-  type, design = '', color = 'primary', label = '',
+  type, design = '', color = 'primary', label = '', activeLabel,
   icon, toggleLabel = ['', ''], action, link, disabled = false
 }: Props) {
   let content = <>{label}</>;
@@ -22,7 +23,7 @@ function Button({
     content = (
       <>
         <span className={`
-          ${localStyles.toggleSlider} ${label === toggleLabel[1] ? localStyles.toggleSliderRight : ''}
+          ${localStyles.toggleSlider} ${activeLabel === toggleLabel[0] ? localStyles.toggleSliderRight : ''}
           ${globalStyles.flex} ${globalStyles.flexCenter} material-icons-round
         `}>thermostat</span>
         <span>{toggleLabel[0]}</span>

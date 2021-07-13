@@ -11,7 +11,7 @@ const Schedules = () => {
     const {state, dispatch} = useContext(AppContext);
     const [showScheduler, setShowScheduler] = useState<boolean>(false);
     const [schedules, setSchedules] = useState<Schedule[]>([]);
-    const [zone, setZone] = useState<string>("all");
+    const [zone, setZone] = useState<number>(-1);
 
     useEffect(() => {
         if (!state.zones.length) {
@@ -29,13 +29,14 @@ const Schedules = () => {
         }
     }, [state.zones, dispatch]);
 
-    useEffect(() => {
-        let schedules = state.schedules;
-        if (zone !== "all") {
-            schedules.filter((s: Schedule) => s.zone === zone)
-        }
-        setSchedules(schedules);
+    useEffect(() => {               
+        if (Number(zone) === -1) {
+            setSchedules(state.schedules);
+        } else {            
+            setSchedules(state.schedules.filter((s: Schedule) => s.zoneId.toString() === zone.toString()));
+        }        
     }, [state.schedules, zone]);
+    
     
     return (
         <div className={pageStyles.page}>

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import localStyles from './Scheduler.module.css';
 import globalStyles from '../../App.module.css';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
+import { Actions, AppContext, Schedule } from '../../store/Store';
 
 interface Props {
     show: boolean;
@@ -10,18 +11,18 @@ interface Props {
 }
 
 const Scheduler = ({show, close}: Props) => {
+    const {state, dispatch} = useContext(AppContext);
+    const zonesList = [
+        ...state.zones.map((z: any) => ({
+            value: z.id, text: z.name
+        }))
+    ]
     const initialForm = {
         fields: {
             zones: {
                 label: 'Zones', elementType: 'multipleSelect',
                 layout: 'block', value: [],
-                options: [
-                    {value: 'sd0', text: 'All zones'},
-                    {value: 'sd1', text: 'sd1'},
-                    {value: 'sd2', text: 'sd2'},
-                    {value: 'sd3', text: 'sd3'}
-                ],
-                valid: false
+                options: zonesList, valid: false
             },
             temperature: {
                 label: 'Temperature', elementType: 'text',
@@ -49,8 +50,6 @@ const Scheduler = ({show, close}: Props) => {
     }
 
     const inputChangedHandler = (e: any, field: string) => {
-        console.log(e.target.value);
-
         const updatedForm = {...form.fields};
         const updatedFormField = {...updatedForm[field]};
         let value = e.target.value;
@@ -82,7 +81,20 @@ const Scheduler = ({show, close}: Props) => {
     }
 
     const addSchedule = () => {
-
+        const selectedZones = form.fields.zones.value;
+        const newSchedules: Schedule[] = selectedZones.map((z: number, i: number) => {
+            const zone = state.zones.find((zone: Schedule) => zone.id.toString() === z.toString());
+            return ({
+                id: Date.now()+i,
+                zone: zone.name,
+                zoneId: Number(z),
+                temperature: form.fields.temperature.value,
+                time: form.fields.time.value
+            })
+        });
+        dispatch({type: Actions.SCHEDULE_Add, payload: newSchedules});
+        setForm({...initialForm});
+        close();
     }
 
     if (!show) {
@@ -108,7 +120,8 @@ const Scheduler = ({show, close}: Props) => {
                     ))}
                 </main>
                 <footer className={`${localStyles.modalFooter} ${globalStyles.flex} ${globalStyles.flexBetweenHor}`}>
-                    <Button type="toggle" color="secondary" label="Temperature unit" toggleLabel={['°F','°C']} />
+                    <Button type="toggle" color="secondary" label="Temperature unit" toggleLabel={['°F','°C']}
+                        activeLabel={state.unit} action={() => dispatch({type: Actions.UNIT_Toggle, payload: state.unit === '°F' ? '°C' : '°F'})} />
                     <Button type="button" design="fill" color="primary" label="Save" action={addSchedule} disabled={!form.isValid} />
                 </footer>
             </section>

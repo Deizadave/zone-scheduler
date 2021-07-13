@@ -6,9 +6,18 @@
 .list {
     padding: 0;
     list-style: none;
-    margin: 0;
+    margin: 0 -5px;
 }
 
-.listGrid {
-    margin: 0 -5px;
+.emptyList {
+    text-align: center;
+    min-height: 300px;
+    border-radius: 10px;
+    background-color: var(--background-color);
+}
+
+.emptyText {
+    margin: 5px;
+    font-weight: 500;
+    color: var(--medium-color-shade);
 }

@@ -45,12 +45,13 @@ const Input:React.FC<Props> = (props) => {
         case ('multipleSelect'): inputElement = <>
                     {props.value.length ?
                         <div className={`${localStyles.selectedOptions} ${globalStyles.flex}`}>
-                            {props.value.map((val: string) => {
-                                const Text = props.options?.find(o => o.value === val)?.text;
+                            {props.value.map((val: number) => {
+                                const option = props.options?.find(o => (o.value.toString() === val.toString()));
+
                                 return (
                                     <button key={val} onClick={() => props.inputChanged({target: {value: val}})}
                                         className={localStyles.selectedOption}>
-                                        {Text}&nbsp;&nbsp;X
+                                        {option?.text}&nbsp;&nbsp;X
                                     </button>
                                 )
                             })}
@@ -59,7 +60,7 @@ const Input:React.FC<Props> = (props) => {
                     <select className={`${localStyles.input} ${inputError ? localStyles.inputError : ''}`}
                         id={props.index} defaultValue={`Select ${props.label}`} onChange={props.inputChanged}>
                         <option value={`Select ${props.label}`} disabled>{`Select ${props.label}`}</option>
-                        {props.options?.filter(option => !props.value.includes(option.value)).map((option) => (
+                        {props.options?.filter(option => !props.value.includes(option.value.toString())).map((option) => (
                             <option value={option.value} key={option.value}>
                                 {option.text}
                             </option>
