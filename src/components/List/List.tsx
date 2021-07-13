@@ -49,8 +49,8 @@ const List = ({type, data, display, title = "List", editItem, deleteItem, addSch
                      }
                 </ul> :
                 <div className={`${globalStyles.flex} ${globalStyles.flexCenter} ${globalStyles.flexColumn} ${localStyles.emptyList}`}>
-                    <h3 className={`${localStyles.emptyText} ${globalStyles.fontSize4}`}>OOPS! Nothing found.</h3>
-                    <h4 className={`${localStyles.emptyText} ${globalStyles.fontSize1}`}>Please add a new item or refresh.</h4>
+                    <h3 className={`${localStyles.emptyText} ${globalStyles.fontSize4}`}>You have no schedule.</h3>
+                    <h4 className={`${localStyles.emptyText} ${globalStyles.fontSize1}`}>Please add a new item.</h4>
                 </div>
             }
         </section>
