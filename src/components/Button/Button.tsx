@@ -35,7 +35,7 @@ function Button({
   }
 
   return (
-    <button className={`${localStyles.button} ${localStyles[type]} ${localStyles[design]} ${localStyles[color]}`}
+    <button type="button" className={`${localStyles.button} ${localStyles[type]} ${localStyles[design]} ${localStyles[color]}`}
       onClick={action ? action : undefined} title={label} disabled={disabled}>
         {(!["icon", "fab"].includes(type) && icon) ? <span className="material-icons-round">{icon}</span> : null}
         {content}
