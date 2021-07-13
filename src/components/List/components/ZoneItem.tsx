@@ -1,7 +1,8 @@
 import localStyles from './ListItem.module.css';
 import globalStyles from '../../../App.module.css';
 import { useContext } from 'react';
-import { AppContext, Schedule } from '../../../store/Store';
+import { Schedule } from '../../../store/models';
+import { AppContext } from '../../../store/store';
 import Button from '../../Button/Button';
 
 interface Props {

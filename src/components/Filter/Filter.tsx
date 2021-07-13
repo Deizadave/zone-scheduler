@@ -3,7 +3,8 @@ import Button from "../Button/Button";
 import localStyles from './Filter.module.css';
 import globalStyles from '../../App.module.css';
 import Input from "../Input/Input";
-import { AppContext } from "../../store/Store";
+import { AppContext } from "../../store/store";
+
 
 interface Props {
     addSchedule: () => void;

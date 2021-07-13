@@ -1,25 +1,7 @@
 import { createContext, useReducer } from "react";
+import { IAppState } from './models';
+import reducers from "./reducers";
 
-export interface Zone {
-  id: number;
-  name: string;
-}
-
-export interface Schedule {
-  id: number;
-  zoneId: number;
-  zone: string;
-  temperature: number;
-  unit: "°C" | "°F";
-  time: string;
-}
-
-export interface IAppState {
-  zones: Zone[];
-  schedules: Schedule[];
-  unit: "°C" | "°F";
-  display: "list" | "grid";
-}
 
 const initialState: IAppState = {
   zones: [],
@@ -30,46 +12,8 @@ const initialState: IAppState = {
 
 let AppContext: any = createContext(initialState);
 
-enum Actions {
-  ZONES_Set = "[ZONE] Set",
-  SCHEDULE_Add = "[SCHEDULE] Add",
-  SCHEDULE_Remove = "[SCHEDULE] Remove",
-  SCHEDULE_Update = "[SCHEDULE] Update",
-  UNIT_Toggle = '[UNIT] Toggle',
-  DISPLAY_Set = '[DISPLAY] Set'
-}
-
-const reducer = (state: IAppState, action: any) => {
-  switch(action.type) {
-    case Actions.ZONES_Set: {
-      return { ...state, zones: action.payload }
-    }
-    case Actions.SCHEDULE_Add: {
-      const updatedSchedules = [...state.schedules, ...action.payload];
-      updatedSchedules.sort((a: Schedule, b: Schedule) => new Date(b.time).getTime() - new Date(a.time).getTime());
-      return { ...state, schedules: updatedSchedules }
-    }
-    case Actions.SCHEDULE_Remove: {
-      return { ...state, schedules: [...state.schedules.filter((schedule: Schedule) => schedule.id !== action.payload)] }
-    }
-    case Actions.SCHEDULE_Update: {
-      let updatedIndex = state.schedules.findIndex((schedule: Schedule) => schedule.id === action.payload.id);
-      state.schedules[updatedIndex] = action.payload;      
-      return { ...state, schedules: [...state.schedules] }
-    }
-    case Actions.UNIT_Toggle: {
-      return { ...state, unit: action.payload }
-    }
-    case Actions.DISPLAY_Set: {
-      return { ...state, display: action.payload }
-    }
-  }
-  return state;
-};
-
-
 const AppContextProvider = (props: any) => {
-  let [state, dispatch] = useReducer(reducer, initialState);
+  let [state, dispatch] = useReducer(reducers, initialState);
   let value = { state, dispatch };
   
   return (
@@ -79,4 +23,4 @@ const AppContextProvider = (props: any) => {
 
 let AppContextConsumer = AppContext.Consumer;
 
-export { AppContext, AppContextProvider, AppContextConsumer, Actions };
+export { AppContext, AppContextProvider, AppContextConsumer };

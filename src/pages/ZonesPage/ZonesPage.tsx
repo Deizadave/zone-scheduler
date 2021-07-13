@@ -4,7 +4,8 @@ import Header from "../../components/Header/Header";
 import localStyles from '../Pages.module.css';
 import Scheduler from "../../components/Scheduler/Scheduler";
 import List from "../../components/List/List";
-import { AppContext, Actions } from "../../store/Store";
+import { AppContext } from '../../store/store';
+import { Actions } from '../../store/actions';
 import Loading from "../../components/Loading/Loading";
 
 const ZonesPage = () => {

@@ -3,7 +3,9 @@ import localStyles from './Scheduler.module.css';
 import globalStyles from '../../App.module.css';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
-import { Actions, AppContext, Schedule } from '../../store/Store';
+import { Schedule } from '../../store/models';
+import { AppContext } from '../../store/store';
+import { Actions } from '../../store/actions';
 
 interface Props {
     show: boolean;

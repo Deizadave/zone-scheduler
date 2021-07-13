@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import Button from '../Button/Button';
-import { Actions, AppContext } from '../../store/Store';
+import { AppContext } from '../../store/store';
+import { Actions } from '../../store/actions';
 import localStyles from './Header.module.css';
 import globalStyles from '../../App.module.css';
 import Nav from '../Nav/Nav';

@@ -4,7 +4,9 @@ import Header from "../../components/Header/Header";
 import localStyles from '../Pages.module.css';
 import Scheduler from "../../components/Scheduler/Scheduler";
 import List from "../../components/List/List";
-import { AppContext, Actions, Schedule, Zone } from "../../store/Store";
+import { Schedule } from '../../store/models';
+import { AppContext } from '../../store/store';
+import { Actions } from '../../store/actions';
 import Loading from "../../components/Loading/Loading";
 
 const SchedulesPage = () => {
@@ -39,7 +41,7 @@ const SchedulesPage = () => {
             setSchedules(state.schedules.filter((s: Schedule) => s.zoneId.toString() === zone.toString()));
             setZoneName(state.zones.find((z: Schedule) => z.id.toString() === zone.toString()).name)
         }        
-    }, [state.schedules, zone]);
+    }, [state.schedules, state.zones, zone]);
 
     const closeScheduler = () => {
         setSelectedSchedule(undefined);

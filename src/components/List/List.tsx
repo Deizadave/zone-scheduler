@@ -1,7 +1,8 @@
 import ScheduleItem from './components/ScheduleItem';
 import globalStyles from '../../App.module.css';
 import localStyles from './List.module.css';
-import { AppContext, Schedule, Zone } from '../../store/Store';
+import { Schedule, Zone } from '../../store/models';
+import { AppContext } from '../../store/store';
 import { useContext } from 'react';
 import ZoneItem from './components/ZoneItem';
 

@@ -2,7 +2,7 @@ import localStyles from './ListItem.module.css';
 import globalStyles from '../../../App.module.css';
 import Button from '../../Button/Button';
 import { useContext } from 'react';
-import { AppContext } from '../../../store/Store';
+import { AppContext } from '../../../store/store';
 
 interface Props {
     display: "list" | "grid";
